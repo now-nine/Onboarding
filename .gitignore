@@ -1,0 +1,95 @@
+### IntelliJ IDEA ###
+.idea/
+*.iml
+out/
+.idea_modules/
+*.ipr
+*.iws
+
+# IntelliJ project-specific cache
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/dictionaries
+.idea/**/shelf/
+.idea/**/httpRequests/
+.idea/**/dataSources/
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/gradle.xml
+.idea/**/libraries
+
+### Gradle ###
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# gradle local properties
+gradle-app.setting
+gradle-app.properties
+
+# Avoid ignoring Gradle wrapper properties
+!gradle/wrapper/gradle-wrapper.properties
+
+# Kotlin build cache (if applicable)
+.kotlinc/
+
+### Java ###
+*.class
+*.jar
+*.war
+*.ear
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.zip
+*.tar.gz
+*.rar
+
+### Logs ###
+*.log
+
+### OS ###
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+__MACOSX/
+
+# Linux
+*~
+
+### Spring Boot ###
+# Ignore application configuration secrets
+application-*.yml
+application-*.properties
+.env
+*.env
+
+# If you have build scripts or scripts folder
+/scripts/*.sh
+/scripts/*.bat
+
+### Test outputs ###
+/test-output/
+/test-results/
+/reports/
+/coverage/
+
+### Others ###
+/bin/
+/target/
+.vscode/
