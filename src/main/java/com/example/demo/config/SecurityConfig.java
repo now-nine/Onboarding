@@ -23,17 +23,19 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/login", "/css/**", "/js/**", "/reset-password").permitAll()
+                .requestMatchers("/", "/login", "/css/**", "/js/**", "/reset-password", "/qna", "/faq", "/notice").permitAll()
+                .requestMatchers("/dashboard", "/notice-list", "/faq-list", "/qna-list").authenticated()
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
                 .loginPage("/login")
-                .defaultSuccessUrl("/main")
+                .usernameParameter("userId")
+                .defaultSuccessUrl("/dashboard")
                 .permitAll()
             )
             .oauth2Login(oauth2 -> oauth2
                 .loginPage("/login")
-                .defaultSuccessUrl("/main")
+                .defaultSuccessUrl("/dashboard")
                 .userInfoEndpoint(userInfo -> userInfo.userService(customOAuth2UserService))
             )
             .logout(logout -> logout

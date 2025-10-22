@@ -28,15 +28,6 @@ public class LoginController {
         return "login";
     }
 
-    @GetMapping("/main")
-    public String mainPage(Model model, @AuthenticationPrincipal OAuth2User oAuth2User) {
-        Map<String, Object> attributes = oAuth2User.getAttributes();
-        Map<String, Object> kakaoAccount = (Map<String, Object>) attributes.get("kakao_account");
-        Map<String, Object> profile = (Map<String, Object>) kakaoAccount.get("profile");
-
-        model.addAttribute("user", Map.of("name", profile.get("nickname")));
-        return "main";
-    }
 
     @GetMapping("/reset-password")
     public String showResetPasswordPage(@RequestParam(value = "error", required = false) String error, Model model) {
@@ -47,13 +38,28 @@ public class LoginController {
     }
 
     @PostMapping("/reset-password")
-    public String resetPassword(@RequestParam String id, @RequestParam String name, Model model) {
-        boolean success = customUserDetailsService.resetPassword(id, name);
+    public String resetPassword(@RequestParam String userId, @RequestParam String name, Model model) {
+        boolean success = customUserDetailsService.resetPassword(userId, name);
         if (success) {
             model.addAttribute("message", "Password has been reset to 1234. Please log in.");
             return "login";
         } else {
             return "redirect:/reset-password?error";
         }
+    }
+
+    @GetMapping("/qna")
+    public String qnaPage() {
+        return "qna";
+    }
+
+    @GetMapping("/faq")
+    public String faqPage() {
+        return "faq";
+    }
+
+    @GetMapping("/notice")
+    public String noticePage() {
+        return "notice";
     }
 }
