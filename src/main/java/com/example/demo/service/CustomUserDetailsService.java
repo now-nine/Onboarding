@@ -19,15 +19,15 @@ public class CustomUserDetailsService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
+    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
+        User user = userRepository.findByUserId(userId)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with ID: " + userId));
 
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), new ArrayList<>());
+        return new org.springframework.security.core.userdetails.User(user.getUserId(), user.getPassword(), new ArrayList<>());
     }
 
-    public boolean resetPassword(String id, String name) {
-        return userRepository.findByIdAndName(id, name)
+    public boolean resetPassword(String userId, String name) {
+        return userRepository.findByUserIdAndNameIgnoreCase(userId, name)
                 .map(user -> {
                     user.setPassword(passwordEncoder.encode("1234"));
                     userRepository.save(user);
